@@ -10,7 +10,26 @@ File: [pressplayontape.wav](challenge_files/pressplayontape.wav)
 
 ### Walkthrough
 
+When played, the provided WAV file produces an obnoxiously loud noise. A quick search on the challenge/file name reveals a Danish band of the same name:
 
+![PRESS PLAY ON TAPE - Band](/images/ppot_band.png)
+
+From the description we can see this relates to Commodore 64 which used `.tap`  files to hold game data. Searching for a WAV -> TAP convertor, we find [c64tapedecode](https://github.com/lunderhage/c64tapedecode) which has capabilities to both convert WAV files to their TAP equivalent but also to extract any files within the TAP file.
+
+```console
+$ git clone https://github.com/lunderhage/c64tapedecode
+$ cd c64tapedecode/src
+$ make
+$ ./wav2tap pressplayontape.wav | ./c64tapedecode -T -v
+```
+
+This creates a file `' .p00'` which contains the flag:
+
+```
+$ cat ' .p00'
+C64File                0
+� "FLAG[32564872D760263D52929CE58CC40071]"� 10
+```
 
 ## Welcome to the Park
 

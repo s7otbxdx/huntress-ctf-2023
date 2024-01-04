@@ -101,6 +101,8 @@ File: [layered_security](challenge_files/layered_security)
 
 ### Walkthrough
 
+
+
 ## Comprezz
 
 *Someone stole my S's and replaced them with Z's! Have you ever seen this kind of file before?*

@@ -16,36 +16,14 @@
 
 ### Walkthrough
 
-Connecting to the tenant, we are given a custom PowerShell prompt which mentions [AADInternals](https://aadinternals.com/aadinternals/).
 
-![General Info - AADInternals Banner](general_info_aadinternals_banner.png)
-
-To get the street address of the organisation, we run `Get` (ref: [Get-AADIntTenantOrganisationInformation](https://aadinternals.com/aadinternals/#get-aadinttenantorganisationinformation-ad))
-
-```powershell
-> Get-AADIntTenantOrganisationInformation
-```
-
-```
-
-```
 ### Conditional Access
 
 *This tenant looks to have some odd [Conditional Access Policies](https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/overview). Can you find a weird one?*
 
 ### Walkthrough
 
-Reading the provided policies and cross-referencing the cmdlets within [AADInternals](https://aadinternals.com/aadinternals/), we can use [Get-AADIntConditionalAccessPolicies](https://aadinternals.com/aadinternals/#get-aadintconditionalaccesspolicies-a) to view these policies:
 
-```powershell
-> Get-AADIntConditionalAccessPolicies
-```
-
-![Conditional Access - Flag](conditional_access_flag.png)
-
-```
-flag{d02fd5f79caa273ea535a526562fd5f7}
-```
 
 ### Teams
 
@@ -53,17 +31,9 @@ flag{d02fd5f79caa273ea535a526562fd5f7}
 
 ### Walkthrough
 
-To view the latest Team's message, we can use [Get-AADIntTeamsMessages](https://aadinternals.com/aadinternals/#get-aadintteamsmessages-t).
 
-```powershell
-> Get-AADIntTeamsMesages
-```
 
-![](teams_flag.png)
 
-```
-flag{f17cf5c1e2e94ddb62b98af0fbbd46e1}
-```
 ### The President
 
 *One of the users in this environment seems to have unintentionally left some information in their account details. Can you track down The President?*

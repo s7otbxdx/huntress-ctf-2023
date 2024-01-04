@@ -82,5 +82,3 @@ This repository holds files and writeups for the Huntress CTF 2023.
 - [M Three Sixty Five - Conditional Access](Other/README.md#conditional-access) (*Easy*)
 - [M Three Sixty Five - Teams](Other/README.md#teams) (*Easy*)
 - [M Three Sixty Five - The President](Other/README.md#the-president) (*Easy*)
-
-

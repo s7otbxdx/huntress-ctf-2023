@@ -78,7 +78,6 @@ flag{10c0e4ed5fcc3259a1b0229264961590}
 File: [operation_eradication](challenge_files/operation_eradication)
 ## Rock, Paper, Psychic
 
-  
 *Wanna play a game of rock, paper, scissors against a computer that can read your mind? Sounds fun, right?* 
   
 ***NOTE: this challenge binary is not malicious, but Windows Defender will likely flag it as malicious anyway. Please don't open it anywhere that you don't want a Defender alert triggering.***
@@ -87,6 +86,33 @@ File: [rock_paper_psychic.7z](challenge_files/rock_paper_psychic.7z)
 
 ## Walkthrough
 
+Downloading the file and executing it, we are given a prompt to select either rock, paper, or scissors. However, we are playing against a computer which can read our mind, meaning whatever we input, the computer will choose the winning alternative:
+
+![Rock, Paper, Psychic - Prompt](/images/rpp_prompt.png)
+
+For example, if we select `rock`, the computer will choose `paper` and we lose:
+
+![Rock, Paper, Psychic - Computer Wins](/images/rpp_computer_wins.png)
+
+We can open this binary in Cutter with **write mode** enabled. We can see that the debug symbols have been left in, meaning the disassembled output is more clean. More notably, from the symbols we can ascertain that we are working with a Nim-compiled binary.
+
+In particular, Nim has three wrapper functions around what is generally considered the `main` function of a binary. Initially, `NimMain` invokes `NimMainInner` which in turn invokes `NimMainModule` which is where the actual `jmp` to `main` exists.
+
+Opening this up in the graph, we can see the main part of the program where the game logic takes place. Initially, the `getComputerChoice` function is called which chooses the winning choice based on the input, before `determineWinner` with the result of this either calling `computerWins` or `playerWins`.
+
+![Rock, Paper Psychic - Game Function](/images/rpp_game_function.png)
+
+From the above, we can see that `0x00416c6a` is the memory offset location of the `playerWins` function. As such, we can edit the `jne` (jump if not equal) and flip it to `je` (jump if equal). 
+
+![Rock, Paper, Psychic - Patch](/images/rpp_patch.png)
+
+This flipped comparison means that now the `playerWins` function is called rather than `computerWins` which yields the flag:
+
+![Rock, Paper, Psychic - Flag](/images/rpp_flag.png)
+
+```
+flag{35bed450ed9ac9fcb3f5f8d547873be9}
+```
 
 ## MFAtigue
 
